@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>StudySprint</title>
+</head>
+<body style="font-family: Arial; text-align:center; margin-top:100px;">
+  <h1>StudySprint 🚀</h1>
+  <h2>Exam Timetable Generator</h2>
+
+  <input id="subjects" placeholder="Enter subjects separated by comma" style="width:300px;"><br><br>
+  <button onclick="generatePlan()">Generate Plan</button>
+
+  <div id="output" style="margin-top:20px;"></div>
+
+  <script>
+    function generatePlan() {
+      const subjects = document.getElementById("subjects").value.split(",");
+      let output = "<h3>Your Study Plan:</h3>";
+      subjects.forEach((subject, index) => {
+        output += "<p>Day " + (index+1) + ": Study " + subject.trim() + "</p>";
+      });
+      document.getElementById("output").innerHTML = output;
+    }
+  </script>
+</body>
+</html>
