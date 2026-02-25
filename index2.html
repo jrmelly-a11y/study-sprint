@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>StudySprint 🚀</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #1e1e2f, #2c2c54);
+      color: white;
+      padding: 40px;
+      margin: 0;
+    }
+
+    .container {
+      background: rgba(255,255,255,0.05);
+      padding: 30px;
+      border-radius: 20px;
+      width: 450px;
+      margin: auto;
+      box-shadow: 0 0 25px rgba(0,0,0,0.4);
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    input {
+      padding: 12px;
+      width: 90%;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    button {
+      padding: 12px 20px;
+      margin-top: 15px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 8px;
+      border: none;
+      background: #00c9ff;
+      color: black;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #92fe9d;
+      transform: scale(1.05);
+    }
+
+    #output {
+      margin-top: 25px;
+      text-align: left;
+    }
+
+    .day {
+      background: rgba(255,255,255,0.1);
+      padding: 10px;
+      border-radius: 8px;
+      margin: 8px 0;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 12px;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>StudySprint 🚀</h1>
+    <p>Smart Exam Timetable Generator</p>
+
+    <input type="text" id="subjects" placeholder="Math, English, Biology">
+    <br>
+    <button onclick="generatePlan()">Generate Plan</button>
+    <button onclick="clearPlan()">Clear</button>
+
+    <div id="output"></div>
+
+    <div class="footer">Built for Success 💪</div>
+  </div>
+
+  <script>
+    function generatePlan() {
+      const input = document.getElementById("subjects").value.trim();
+      const output = document.getElementById("output");
+      output.innerHTML = "";
+
+      if (input === "") {
+        output.innerHTML = "<p>Please enter subjects first.</p>";
+        return;
+      }
+
+      const subjects = input.split(",");
+      const today = new Date();
+
+      subjects.forEach((subject, index) => {
+        const studyDate = new Date();
+        studyDate.setDate(today.getDate() + index);
+
+        const dayDiv = document.createElement("div");
+        dayDiv.classList.add("day");
+
+        dayDiv.innerHTML = `
+          <strong>Day ${index + 1}</strong><br>
+          📅 ${studyDate.toDateString()}<br>
+          📚 Study: ${subject.trim()}
+        `;
+
+        output.appendChild(dayDiv);
+      });
+    }
+
+    function clearPlan() {
+      document.getElementById("output").innerHTML = "";
+      document.getElementById("subjects").value = "";
+    }
+  </script>
+
+</body>
+</html>
